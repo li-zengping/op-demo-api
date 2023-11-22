@@ -48,7 +48,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.name
-        image: breaklinux/op-demo-app:86
+        image: #appImage#
         imagePullPolicy: IfNotPresent
         lifecycle:
           postStart:
