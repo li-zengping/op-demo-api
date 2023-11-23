@@ -51,19 +51,12 @@ spec:
         image: #appImage#
         imagePullPolicy: IfNotPresent
         lifecycle:
-          postStart:
-            exec:
-              command:
-              - sh
-              - -c
-              - while true; do sleep 5; curl -s --connect-timeout 1 http://127.0.0.1:8080/healthy
-                && break; done
           preStop:
             exec:
               command:
               - sh
               - -c
-              - while true; do sleep 2; curl -s --connect-timeout 1 http://127.0.0.1:8080/healthy
+              - while true; do sleep 2; curl -s --connect-timeout 1 --max-time 10 http://127.0.0.1:8080/healthy
                 &> /dev/null || break; done
         livenessProbe:
           failureThreshold: 3
